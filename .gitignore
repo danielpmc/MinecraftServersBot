@@ -1,0 +1,5 @@
+config.json
+json.sqlite
+node_modules/
+storage/
+servers/
