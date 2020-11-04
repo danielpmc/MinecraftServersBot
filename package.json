@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "child_process": "^1.0.2",
-    "danbot-hosting": "^0.1.4",
+    "danbot-hosting": "^0.1.6",
     "discord.js": "^12.3.1",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
