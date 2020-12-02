@@ -62,9 +62,10 @@ exports.run = async (client, message, args, socket) => {
               message.channel.send('The server you created already running!')
             } else {
                 const embed = new Discord.MessageEmbed()
-                    .addField('__**Server Started!**__', '**Server IP:** `51.38.69.73:' + sport + '` \n**Gamemode:** `Survival` \n**Version:** ' + args[1] + ' \n **Player Slots:** 50')
+                    .addField('__**Server Started!**__', '**Server IP:** `161.97.138.124:' + sport + '` \n**Gamemode:** `Survival` \n**Version:** ' + args[1] + ' \n **Player Slots:** 50')
                     .setFooter('To manage the server. Please see DMs for info')
                 message.channel.send(embed)
+                client.channels.cache.get('783799656722595842').send('Minecraft server started for <@' + message.author.id + '> (ID: ' + message.author.id + ') \nIP: `161.97.138.124' + sport + '` \nGamemode: Survival \nVersion: ' + args[1])
                 fs.copy('./storage/serverjars/spigot-' + args[1] + ".jar", './servers/' + message.author.id + "-survival/spigot-" + args[1] + ".jar")
                 setTimeout(() => {
                     const minecraftServerProcess = spawn('java', [
@@ -137,9 +138,10 @@ exports.run = async (client, message, args, socket) => {
             } else {
                 //Server created message
                 const embed = new Discord.MessageEmbed()
-                .addField('__**Server Started!**__', '**Server IP:** `51.38.69.73:' + sport + '` \n**Gamemode:** `Creative` \n**Version:** `' + args[1] + '` \n **Player Slots:** 50')
+                .addField('__**Server Started!**__', '**Server IP:** `161.97.138.124:' + sport + '` \n**Gamemode:** `Creative` \n**Version:** `' + args[1] + '` \n **Player Slots:** 50')
                     .setFooter('To manage the server. Please see DMs for info')
                 message.channel.send(embed)
+                client.channels.cache.get('783799656722595842').send('Minecraft server started for <@' + message.author.id + '> (ID: ' + message.author.id + ') \nIP: `161.97.138.124' + sport + '` \nGamemode: Creative \nVersion: ' + args[1])
                 //Copy server jar files over
                 fs.copy('./storage/serverjars/spigot-' + args[1] + ".jar", './servers/' + message.author.id + "-creative/spigot-" + args[1] + ".jar")
                 //Launch the server 

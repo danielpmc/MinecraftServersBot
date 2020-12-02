@@ -37,7 +37,7 @@ client.on("ready", async () => {
             if (response.includes("Already up to date.")) {
                 //console.log('Bot already up to date. No changes since last pull')
             } else {
-                client.channels.get('783799656722595842').send('**[AUTOMATIC]** \nNew update on GitHub. Pulling. \n\nLogs: \n```' + response + "```" + "\n\n\n**Restarting bot**")
+                client.channels.cache.get('783799656722595842').send('**[AUTOMATIC]** \nNew update on GitHub. Pulling. \n\nLogs: \n```' + response + "```" + "\n\n\n**Restarting bot**")
                 setTimeout(() => {
                     process.exit();
                 }, 1000)
@@ -56,7 +56,7 @@ client.on("guildCreate", (guild) => {
     });
     
     //Log new guild join in console
-    console.log('Joined: ' + guild.name + "(ID: " + guild.id + ") \nGuild owner: " + guild.owner + " \n\nTotal: " + client.guilds.cache.size)
+    client.channels.cache.get('783799548395913246').send('Joined: ' + guild.name + "(ID: " + guild.id + ") \nGuild owner: " + guild.owner + " \n\nTotal: " + client.guilds.cache.size)
 });
 
 //Command handler
