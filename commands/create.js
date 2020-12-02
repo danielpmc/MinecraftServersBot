@@ -65,14 +65,14 @@ exports.run = async (client, message, args, socket) => {
                     .addField('__**Server Started!**__', '**Server IP:** `161.97.138.124:' + sport + '` \n**Gamemode:** `Survival` \n**Version:** ' + args[1] + ' \n **Player Slots:** 50')
                     .setFooter('To manage the server. Please see DMs for info')
                 message.channel.send(embed)
-                client.channels.cache.get('783799548395913246').send('Minecraft server started for <@' + message.author.id + '> (ID: ' + message.author.id + ') \nIP: `161.97.138.124:' + sport + '` \nGamemode: Survival \nVersion: ' + args[1])
+                client.channels.cache.get('783799548395913246').send('Minecraft server started for <@' + message.author.id + '> (ID: ' + message.author.id + ') \nIP: `161.97.138.124:' + sport + '` \nGamemode: Survival \nVersion: ' + args[1] + '\n\nTotal: \nRUNNING: ' + servers.get('totalstats.running') + '\nSTOPPED: ' + servers.get('totalstats.stopped'))
                 servers.set('totalstats', {
                     running: `${servers.get('totalstats.running') + 1}`,
                     stopped: `${servers.get('totalstats.stopped')}`
                 })
                 fs.copy('./storage/serverjars/spigot-' + args[1] + ".jar", './servers/' + message.author.id + "-survival/spigot-" + args[1] + ".jar")
                 setTimeout(() => {
-                    const minecraftServerProcess = children.push(spawn('java', [
+                    const minecraftServerProcess = child_children.push(spawn('java', [
                         '-Xmx1024M',
                         '-Xms1024M',
                         '-DIReallyKnowWhatIAmDoingISwear',
@@ -149,7 +149,7 @@ exports.run = async (client, message, args, socket) => {
                 .addField('__**Server Started!**__', '**Server IP:** `161.97.138.124:' + sport + '` \n**Gamemode:** `Creative` \n**Version:** `' + args[1] + '` \n **Player Slots:** 50')
                     .setFooter('To manage the server. Please see DMs for info')
                 message.channel.send(embed)
-                client.channels.cache.get('783799548395913246').send('Minecraft server started for <@' + message.author.id + '> (ID: ' + message.author.id + ') \nIP: `161.97.138.124:' + sport + '` \nGamemode: Creative \nVersion: ' + args[1])
+                client.channels.cache.get('783799548395913246').send('Minecraft server started for <@' + message.author.id + '> (ID: ' + message.author.id + ') \nIP: `161.97.138.124:' + sport + '` \nGamemode: Creative \nVersion: ' + args[1] + '\n\nTotal: \nRUNNING: ' + servers.get('totalstats.running') + '\nSTOPPED: ' + servers.get('totalstats.stopped'))
                 servers.set('totalstats', {
                     running: `${servers.get('totalstats.running') + 1}`,
                     stopped: `${servers.get('totalstats.stopped')}`
@@ -158,7 +158,7 @@ exports.run = async (client, message, args, socket) => {
                 fs.copy('./storage/serverjars/spigot-' + args[1] + ".jar", './servers/' + message.author.id + "-creative/spigot-" + args[1] + ".jar")
                 //Launch the server 
                 setTimeout(() => {
-                    var minecraftServerProcess = children.push(spawn('java', [
+                    var minecraftServerProcess = child_children.push(spawn('java', [
                         '-Xmx1024M',
                         '-Xms1024M',
                         '-DIReallyKnowWhatIAmDoingISwear',
