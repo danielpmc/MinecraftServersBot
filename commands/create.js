@@ -72,7 +72,7 @@ exports.run = async (client, message, args, socket) => {
                 })
                 fs.copy('./storage/serverjars/spigot-' + args[1] + ".jar", './servers/' + message.author.id + "-survival/spigot-" + args[1] + ".jar")
                 setTimeout(() => {
-                    const minecraftServerProcess = spawn('java', [
+                    const minecraftServerProcess = children.push(spawn('java', [
                         '-Xmx1024M',
                         '-Xms1024M',
                         '-DIReallyKnowWhatIAmDoingISwear',
@@ -81,7 +81,7 @@ exports.run = async (client, message, args, socket) => {
                         'spigot-' + args[1] + '.jar',
                         '-p' + sport,
                         '-s50',
-                        'nogui' ], { cwd: './servers/' + message.author.id + '-survival/' }); 
+                        'nogui' ], { cwd: './servers/' + message.author.id + '-survival/' })); 
                         minecraftServerProcess.stdout.on('data', log);
                         minecraftServerProcess.stderr.on('data', log);
     
@@ -158,7 +158,7 @@ exports.run = async (client, message, args, socket) => {
                 fs.copy('./storage/serverjars/spigot-' + args[1] + ".jar", './servers/' + message.author.id + "-creative/spigot-" + args[1] + ".jar")
                 //Launch the server 
                 setTimeout(() => {
-                    var minecraftServerProcess = spawn('java', [
+                    var minecraftServerProcess = children.push(spawn('java', [
                         '-Xmx1024M',
                         '-Xms1024M',
                         '-DIReallyKnowWhatIAmDoingISwear',
@@ -167,7 +167,7 @@ exports.run = async (client, message, args, socket) => {
                         'spigot-' + args[1] + '.jar',
                         '-p' + sport,
                         '-s50',
-                        'nogui' ], { cwd: './servers/' + message.author.id + '-creative/' }); 
+                        'nogui' ], { cwd: './servers/' + message.author.id + '-creative/' })); 
                         minecraftServerProcess.stdout.on('data', log);
                         minecraftServerProcess.stderr.on('data', log);
 

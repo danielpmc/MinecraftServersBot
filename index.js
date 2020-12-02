@@ -5,6 +5,7 @@ global.spawn = require('child_process').spawn;
 global.client = new Discord.Client({disableEveryone: true});
 global.config = require("./config.json");
 global.exec = require('child_process').exec;
+global.child_children  = [];
 
 //Database - Quick.DB
 const db = require('quick.db');
@@ -85,5 +86,13 @@ client.on('message', message => {
 
     }
 })
+
+//Stop all servers on bot shutdown
+process.on('exit', function() {
+    console.log('killing', children.length, 'child processes');
+    children.forEach(function(child) {
+      child.kill();
+    });
+  });
 
 client.login(config.DiscordBot.token);
