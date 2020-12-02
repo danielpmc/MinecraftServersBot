@@ -10,6 +10,7 @@ global.exec = require('child_process').exec;
 const db = require('quick.db');
 global.settings = new db.table("settings"); //Guild settings, Stored: Prefix, GuildID, Admins only
 global.userSettings = new db.table("userSettings"); //User settings, Stored: Premium User, Dedicated Port, Premium Ram, Server
+global.servers = new db.table("servers"); //Running servers, Stopped servers and also a console link
 
 //Post stats to websites
 var DanBotHosting = require("danbot-hosting");
