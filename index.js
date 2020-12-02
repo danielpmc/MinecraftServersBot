@@ -4,6 +4,7 @@ global.fs = require("node-fs-extra");
 global.spawn = require('child_process').spawn;
 global.client = new Discord.Client({disableEveryone: true});
 global.config = require("./config.json");
+global.exec = require('child_process').exec;
 
 //Database - Quick.DB
 const db = require('quick.db');
@@ -27,6 +28,23 @@ client.on("ready", async () => {
   if (initalPost) {
     console.error(initalPost); // console the error
   };
+
+  //Automatic 30second git pull.
+  setInterval(() => {
+    exec(`git pull`, (error, stdout) => {
+        let response = (error || stdout);
+        if (!error) {
+            if (response.includes("Already up to date.")) {
+                //console.log('Bot already up to date. No changes since last pull')
+            } else {
+                client.channels.get('783799656722595842').send('**[AUTOMATIC]** \nNew update on GitHub. Pulling. \n\nLogs: \n```' + response + "```" + "\n\n\n**Restarting bot**")
+                setTimeout(() => {
+                    process.exit();
+                }, 1000)
+            };
+        }
+    })
+}, 30000)
 });
 
 //Client event guild join
