@@ -89,8 +89,8 @@ client.on('message', message => {
 
 //Stop all servers on bot shutdown
 process.on('exit', function() {
-    console.log('killing', children.length, 'child processes');
-    children.forEach(function(child) {
+    console.log('killing', child_children.length, 'child processes');
+    child_children.forEach(function(child) {
       child.kill();
     });
   });
