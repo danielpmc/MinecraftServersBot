@@ -22,7 +22,7 @@ client.on("ready", async () => {
   client.user.setActivity('Minecraft | Free Minecraft Servers!')
 
   //Start posting stats (DanBotHosting)
-  const API = new DanBotHosting.Client(config.DanBotHosting.apikey, client);
+  const API = new DanBotHosting.Client(config.DanBotHosting, client);
  
   // Start posting
   let initalPost = await API.autopost();
@@ -67,7 +67,7 @@ client.on('message', message => {
         minecraftServerProcess.stdin.write(message.content);
     }
     if (message.author.bot) return;
-    if (message.author.id == "137624084572798976") {
+    if (message.author.id == "680506811031355413") {
 
     const prefix = settings.get(message.guild.id).prefix;
     if (message.content.indexOf(prefix) !== 0) return;
@@ -95,4 +95,4 @@ process.on('exit', function() {
     });
   });
 
-client.login(config.DiscordBot.token);
+client.login(config.DiscordBot);
