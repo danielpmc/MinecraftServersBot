@@ -14,12 +14,17 @@ global.userSettings = new db.table("userSettings"); //User settings, Stored: Pre
 global.servers = new db.table("servers"); //Running servers, Stopped servers and also a console link
 
 //Post stats to websites
-var DanBotHosting = require("danbot-hosting");
+const DanBotHosting = require("danbot-hosting");
 
 //Client event ready
 client.on("ready", async () => {
   console.log(client.user.username + " is online with " + client.guilds.cache.size + " servers!");
-  client.user.setActivity('Minecraft | Free Minecraft Servers!')
+  await client.user.setActivity('Minecraft | Free Minecraft Servers!')
+
+    settings.set('476731541167407106', {
+        "prefix": config.DiscordBot.defaultprefix,
+        "adminonly": "false"
+    });
 
   //Start posting stats (DanBotHosting)
   const API = new DanBotHosting.Client(config.DanBotHosting.apikey, client);
@@ -67,7 +72,7 @@ client.on('message', message => {
         minecraftServerProcess.stdin.write(message.content);
     }
     if (message.author.bot) return;
-    if (message.author.id == "137624084572798976") {
+    if (message.author.id === "229367793479319553") {
 
     const prefix = settings.get(message.guild.id).prefix;
     if (message.content.indexOf(prefix) !== 0) return;
@@ -93,6 +98,10 @@ process.on('exit', function() {
     child_children.forEach(function(child) {
       child.kill();
     });
+    servers.set('totalstats', {
+        running: "0",
+        stopped: "0"
+    })
   });
 
 client.login(config.DiscordBot.token);

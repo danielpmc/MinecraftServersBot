@@ -13,20 +13,20 @@ exports.run = async (client, message, args, socket) => {
     //Server IP generation
      function serverport(length) {
          if (userSettings.get(message.author.id) == null) {
-            var result           = '';
-            var characters       = '23456789';
-            var charactersLength = characters.length;
-            for ( var i = 0; i < length; i++ ) {
+            let result           = '';
+            let characters       = '23456789';
+            let charactersLength = characters.length;
+            for ( let i = 0; i < length; i++ ) {
                result += characters.charAt(Math.floor(Math.random() * charactersLength));
             }
             return result;
-         } else if (userSettings.get(message.author.id).premiumport == true) {
-             if (args[0] == "survival") {
-                if (userSettings.get(message.author.id).survivalenabled == false) {
-                    var result           = '';
-                    var characters       = '23456789';
-                    var charactersLength = characters.length;
-                    for ( var i = 0; i < length; i++ ) {
+         } else if (userSettings.get(message.author.id).premiumport === true) {
+             if (args[0] === "survival") {
+                if (userSettings.get(message.author.id).survivalenabled === false) {
+                    let result           = '';
+                    let characters       = '23456789';
+                    let charactersLength = characters.length;
+                    for ( let i = 0; i < length; i++ ) {
                         result += characters.charAt(Math.floor(Math.random() * charactersLength));
                     }
                     return result;
@@ -34,12 +34,12 @@ exports.run = async (client, message, args, socket) => {
                     var result = userSettings.get(message.author.id).survivaldport;
                     return result;
                 }
-             } else if (args[0] == "creative") {
-                if (userSettings.get(message.author.id).creativeenabled == false) {
-                    var result           = '';
-                    var characters       = '23456789';
-                    var charactersLength = characters.length;
-                    for ( var i = 0; i < length; i++ ) {
+             } else if (args[0] === "creative") {
+                if (userSettings.get(message.author.id).creativeenabled === false) {
+                    let result           = '';
+                    let characters       = '23456789';
+                    let charactersLength = characters.length;
+                    for ( let i = 0; i < length; i++ ) {
                         result += characters.charAt(Math.floor(Math.random() * charactersLength));
                     }
                     return result;
@@ -158,19 +158,18 @@ exports.run = async (client, message, args, socket) => {
                 fs.copy('./storage/serverjars/spigot-' + args[1] + ".jar", './servers/' + message.author.id + "-creative/spigot-" + args[1] + ".jar")
                 //Launch the server 
                 setTimeout(() => {
-                    var minecraftServerProcess = child_children.push(spawn('java', [
-                        '-Xmx1024M',
+                    const minecraftServerProcess = child_children.push(spawn('java', [
+                        '-Xmx2048M',
                         '-Xms1024M',
                         '-DIReallyKnowWhatIAmDoingISwear',
                         '-XX:ParallelGCThreads=1',
                         '-jar',
                         'spigot-' + args[1] + '.jar',
                         '-p' + sport,
-                        '-s50',
-                        'nogui' ], { cwd: './servers/' + message.author.id + '-creative/' })); 
-                        minecraftServerProcess.stdout.on('data', log);
-                        minecraftServerProcess.stderr.on('data', log);
-
+                        '-s25',
+                        'nogui' ], { cwd: './servers/' + message.author.id + '-creative/' }));
+                        //minecraftServerProcess.stdout.on('data', log);
+                        //minecraftServerProcess.stderr.on('data', log);
                         setInterval(() => {
                         minecraftServerProcess.stdin.write("save-all \n");
                         }, 297000)
@@ -211,7 +210,7 @@ exports.run = async (client, message, args, socket) => {
                                 //30mins timeout - Shutdown warning
                             }, 	1800000)
                             //3hours timeout - Shutdown warning
-                        }, 10800000)
+                    }, 10800000)
                     //2seconds timeout - server creation
                 }, 2000)
             }
